@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Entries</title>
+    <style>
+        /* Add your styles here */
+        .entry { margin-bottom: 10px; border-bottom: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+    <div id="entries-container">
+        <!-- Your entries will appear here -->
+    </div>
+
+    <!-- The Save Button -->
+    <button onclick="saveToFile()">Export Updated File</button>
+
+    <script>
+        function saveToFile() {
+            // Get the entire HTML structure
+            const htmlContent = document.documentElement.outerHTML;
+            
+            // Create a Blob from the content
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            
+            // Create a download link
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'updated_index.html'; // Name of the downloaded file
+            
+            // Trigger the download
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
